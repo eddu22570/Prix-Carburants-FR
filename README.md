@@ -2,6 +2,8 @@
 
 # Recherche des stations-service les moins chères par carburant et commune
 
+[![Licence MIT](https://img.shields.io/badge/Licence-MIT-green.svg)](LICENSE)
+
 Ce script Python permet d'identifier, pour une ou plusieurs communes françaises, la station-service proposant le prix le plus bas pour certains carburants (ex : GPLc, E10) à partir des données open data officielles du gouvernement français (https://www.prix-carburants.gouv.fr/).  
 Il enrichit également les résultats avec l’enseigne de la station via OpenStreetMap lorsque cette information est disponible.
 
@@ -38,13 +40,19 @@ pip install requests
 2. **Modifier les paramètres** dans le script selon vos besoins :  
    - `communes_recherchees` : liste des communes à analyser (ex. `["Loudéac", "Pontivy"]`)  
    - `carburants_voulus` : types de carburants à rechercher (ex. `{"GPLc", "E10"}`)
-  Types de carburants disponibles dans la base de données prix-carburants.gouv.fr:
-   - GPLc
-   - Gazole
-   - E85
-   - E10
-   - SP95
-   - SP98
+  
+### Types de carburants reconnus par le script
+- **Gazole**
+- **SP95**
+- **SP98**
+- **E10** (SP95-E10)
+- **E85** (Superéthanol)
+- **GPLc** (GPL carburant)
+
+### Exemples de modifications de villes de recherches et de carburants à rechercher:
+communes_recherchees = ["Loudéac", "Pontivy", "Saint-Brieuc"]
+carburants_voulus = {"GPLc", "E10", "SP95", "SP98", "Gazole", "E85"}
+
 
 3. **Exécuter le script** :
 
