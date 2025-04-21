@@ -38,8 +38,8 @@ pip install requests
 1. **Cloner le dépôt** ou copier le script dans un fichier, par exemple `recherche_carburant.py`.
 
 2. **Modifier les paramètres** dans le script selon vos besoins :  
-   - `communes_recherchees` : liste des communes à analyser (ex. `["Loudéac", "Pontivy"]`)  
-   - `carburants_voulus` : types de carburants à rechercher (ex. `{"GPLc", "E10"}`)
+   `communes_recherchees` : liste des communes à analyser (ex. `["Loudéac", "Pontivy"]`)  
+   `carburants_voulus` : types de carburants à rechercher (ex. `{"GPLc", "E10"}`)
   
 ### Types de carburants reconnus par le script
 - **Gazole**
