@@ -1,4 +1,4 @@
-# Prix-Carburants-FR
+# Prix-Carburants-FR-V2
 
 # Recherche des stations-service les moins chères par carburant et commune
 
@@ -11,11 +11,23 @@ Il enrichit également les résultats avec l’enseigne de la station via OpenSt
 
 ## Fonctionnalités
 
-- Téléchargement automatique des données officielles des prix des carburants (prix-carburants.gouv.fr)  
-- Recherche de la station la moins chère par carburant et par commune  
-- Affichage de l’adresse, du prix, de la date de mise à jour  
-- Recherche de l’enseigne via l’API Overpass d’OpenStreetMap  
-- Gestion des accents et de la casse dans les noms de communes  
+Téléchargement automatique des données officielles (mise à jour toutes les 10 minutes) depuis le site gouvernemental.
+
+Recherche multi-critères :
+  - Par ville (avec suggestions automatiques), code postal ou département.
+  - Sélection multiple de carburants (SP95, E10, GPLc, Gazole, SP98, E85).
+  - Option pour n’afficher que les stations actuellement ouvertes.
+
+Affichage des résultats :
+  - Top 10 des stations les moins chères par carburant et zone.
+  - Adresse, prix, date de mise à jour, horaires, et statut d’ouverture.
+  - Moyenne des prix et écart par rapport à la moyenne.
+  - Signalement des stations en rupture de carburant.
+
+Interface conviviale :
+  - Suggestions automatiques de communes (API gouvernementale).
+  - Sélection/ajout/retrait de villes, boutons pour tout cocher/décocher.
+  - Tableau de résultats interactif.
 
 ---
 
@@ -35,12 +47,9 @@ pip install requests
 
 ## Utilisation
 
-1. **Cloner le dépôt** ou copier le script dans un fichier, par exemple `recherche_carburant.py`.
+1. **Cloner le dépôt** ou copier le script dans un fichier, par exemple `recherche_carburantv2.py`.
 
-2. **Modifier les paramètres** dans le script selon vos besoins :  
-   `communes_recherchees` : liste des communes à analyser (ex. `["Loudéac", "Pontivy"]`)  
-   `carburants_voulus` : types de carburants à rechercher (ex. `{"GPLc", "E10"}`)
-  
+2. **Modifier les paramètres** dans le script selon vos besoins :    
 ### Types de carburants reconnus par le script
 - **Gazole**
 - **SP95**
@@ -49,40 +58,36 @@ pip install requests
 - **E85** (Superéthanol)
 - **GPLc** (GPL carburant)
 
-### Exemples de modifications de villes de recherches et de carburants à rechercher:
-communes_recherchees = ["Loudéac", "Pontivy", "Saint-Brieuc"]
-carburants_voulus = {"GPLc", "E10", "SP95", "SP98", "Gazole", "E85"}
-
-
 3. **Exécuter le script** :
 
-python recherche_carburant.py
+python recherche_carburantv2.py
 
 ---
 
 ## Exemple de sortie
 
-![image](https://github.com/user-attachments/assets/aacb23ff-abdd-4c7c-a402-0cf00992c963)
+![image](https://github.com/user-attachments/assets/29559c7d-758c-45c4-8845-26c38c39c9eb)
 
-![image](https://github.com/user-attachments/assets/e5c6c866-fa7e-458e-81b7-973f2fb40a36)
+![image](https://github.com/user-attachments/assets/6eedd98b-c839-4c85-85e0-c60c2435f939)
 
 ---
 
 ## Fonctionnement détaillé
 
-- Téléchargement et extraction du fichier XML des prix des carburants depuis le site officiel.  
-- Filtrage des stations par commune (avec gestion des accents et casse).  
-- Identification de la station la moins chère pour chaque carburant spécifié.  
-- Recherche de l’enseigne de la station via une requête à l’API Overpass d’OpenStreetMap, basée sur les coordonnées GPS.  
+- Téléchargement et extraction du fichier XML des prix des carburants depuis le site officiel
+- Filtrage des stations par commune, code postal ou département (gestion des accents et de la casse).
+- Identification des stations les moins chères pour chaque carburant spécifié.
+- Affichage enrichi : adresse, prix, date de mise à jour, horaires, statut d’ouverture, ruptures de stock.
+- Calculs statistiques : moyenne des prix, écart par rapport à la moyenne, classement des stations.
 
 ---
 
 ## Limitations
 
-- L’enseigne n’est pas toujours disponible, dépendant de la couverture et de la qualité des données OpenStreetMap.  
-- Le script respecte la limite d’une requête par seconde vers l’API Overpass pour éviter le blocage.  
-- Les prix sont exprimés en centimes d’euros par litre (c€/L).  
-- En cas d’égalité des prix, seul la première station trouvée est retournée.  
+- Le nom de l’enseigne de la station n’est pas fourni dans les données officielles
+- Les prix sont exprimés en euros par litre.
+- En cas d’égalité des prix, toutes les stations correspondantes sont affichées.
+- Les données sont dépendantes de la qualité et de la fréquence de mise à jour du flux gouvernemental.
 
 ---
 
@@ -100,4 +105,4 @@ Les données carburants sont sous licence ouverte Etalab.
 
 ---
 
-*Script développé pour faciliter l’accès aux données carburants officielles et enrichir l’information avec des données géographiques libres.*
+*Script développé pour faciliter l’accès aux données carburants officielles et permettre à chacun d’optimiser ses dépenses de carburant grâce à une interface simple et puissante.*
